@@ -39,7 +39,7 @@ VQ.C = (() => {
       g += `<g class="xh" style="display:none"><line y1="${pt}" y2="${H - pb}" stroke="var(--axis)"/>${series.map(s => `<circle r="4" fill="${s.color}" stroke="#fff" stroke-width="2"/>`).join('')}</g>`;
       el.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" data-hover="1">${g}<rect x="${pl}" y="${pt}" width="${W - pl - pr}" height="${H - pt - pb}" fill="transparent" data-hover="1"/></svg>`;
       const svg = el.firstChild, xh = svg.querySelector('.xh'), dots = xh.querySelectorAll('circle'), ln = xh.querySelector('line');
-      svg.onmousemove = e => { const r = svg.getBoundingClientRect(); const i = VQ.clamp(Math.round((e.clientX - r.left - pl) / ((W - pl - pr) / Math.max(1, n - 1))), 0, n - 1);
+      svg.onmousemove = e => { const r = svg.getBoundingClientRect(), k = r.width / W || 1; const i = VQ.clamp(Math.round(((e.clientX - r.left) / k - pl) / ((W - pl - pr) / Math.max(1, n - 1))), 0, n - 1);
         xh.style.display = ''; ln.setAttribute('x1', x(i)); ln.setAttribute('x2', x(i));
         series.forEach((s, k) => { const v = s.data[i]; dots[k].style.display = v == null ? 'none' : ''; if (v != null) { dots[k].setAttribute('cx', x(i)); dots[k].setAttribute('cy', y(v)); } });
         VQ.tip.show(`<div class="th">${esc(o.labels[i])}</div>` + series.filter(s => s.data[i] != null).map(s => `<div class="tr"><i style="background:${s.color}"></i><b>${tf(s.data[i])}${o.unit ? ' ' + esc(o.unit) : ''}</b><span>${esc(s.name)}</span></div>`).join(''), e.clientX, e.clientY); };

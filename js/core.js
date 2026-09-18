@@ -96,6 +96,8 @@ VQ.series = (n, base, amp, seed, shape) => { const r = VQ.rng(seed || 7); return
 
 /* mount: components that need their rendered width register a draw function */
 VQ.mount = fn => { VQ._mounts.push(fn); return VQ._mounts.length - 1; };
+/* fit: the layout is designed for a content area of 1236px or more; narrower windows scale the content down instead of letting text spill */
+VQ.fit = () => { const main = document.getElementById('main'); if (!main) return; const rail = innerWidth <= 820 ? 60 : 204; const z = VQ.clamp((innerWidth - rail) / 1236, .55, 1); main.style.zoom = z === 1 ? '' : z.toFixed(3); VQ.zoom = z; };
 VQ.runMounts = () => document.querySelectorAll('[data-m]').forEach(el => { const fn = VQ._mounts[+el.dataset.m]; if (fn) fn(el); });
 
 /* ---------- screens + router ---------- */
@@ -133,7 +135,7 @@ VQ.render = keepScroll => {
   if (S.tabs) html += `<div class="tabs-row"><div class="tabs">${S.tabs.map(([k, l]) => `<button class="tab ${k === vid ? 'active' : ''}" data-go="${base}/${k}">${l}</button>`).join('')}</div>${(V.filters || S.filters) ? `<div class="filters">${val(V.filters || S.filters)}</div>` : ''}</div>`;
   html += V.render(ctx) + VQ.values(val(S.values)) + '</div>';
   const main = document.getElementById('main'); const top = main.scrollTop;
-  main.innerHTML = html; main.scrollTop = keepScroll ? top : 0;
+  VQ.fit(); main.innerHTML = html; main.scrollTop = keepScroll ? top : 0;
   VQ.runMounts(); VQ.renderDemo(); VQ.tip.hide();
   document.title = `${String(val(V.title || S.title)).replace(/<[^>]+>/g, '')} · VizionIQ`;
 };
@@ -196,6 +198,6 @@ VQ.start = () => {
     else if (e.key === '/') { e.preventDefault(); VQ.openSearch(); } else if (e.key === 'Escape') VQ.closeOv();
   });
   window.addEventListener('hashchange', () => VQ.render());
-  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(VQ.runMounts, 120); });
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { VQ.fit(); VQ.runMounts(); }, 120); });
   VQ.render();
 };

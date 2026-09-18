@@ -106,10 +106,10 @@
     .tq-lt { position: absolute; top: 53.5%; height: 24%; width: 11.8%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 7px; border: 2px solid; color: #fff; line-height: 1.15; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
     .tq-lt b { font-size: 16px; font-weight: 700; } .tq-lt span { font-size: 11.5px; }
     .tq-lt.good { background: #12753a; border-color: #3fe083; } .tq-lt.warn { background: #96600a; border-color: #ffc04d; } .tq-lt.crit { background: #8a1d22; border-color: #ff5a52; }
-    .tq-ov { display: grid; grid-template-columns: 1fr 1fr; } .tq-ov > div { display: flex; gap: 12px; align-items: flex-start; padding: 12px 6px; }
+    .tq-ov { display: grid; grid-template-columns: 1fr 1fr; } .tq-ov > div { display: flex; gap: 10px; align-items: flex-start; padding: 12px 6px; min-width: 0; } .tq-ov > div > div { min-width: 0; }
     .tq-ov > div:nth-child(odd) { border-right: 1px solid var(--line-2); padding-right: 12px; } .tq-ov > div:nth-child(even) { padding-left: 16px; } .tq-ov > div:nth-child(n+3) { border-top: 1px solid var(--line-2); }
-    .tq-ov .ic { width: 30px; height: 30px; flex: none; margin-top: 4px; } .tq-ov .k { font-size: 12px; color: var(--text-2); } .tq-ov .v { font-size: 19px; font-weight: 800; color: var(--ink); line-height: 1.2; white-space: nowrap; }
-    .tq-ov .d { font-size: 11.5px; color: var(--text-2); white-space: nowrap; } .tq-ov .d b.g { color: var(--good-ink); } .tq-ov .d b.r { color: var(--crit-ink); }
+    .tq-ov .ic { width: 30px; height: 30px; flex: none; margin-top: 4px; } .tq-ov .k { font-size: 12px; color: var(--text-2); } .tq-ov .v { font-size: 19px; font-weight: 800; color: var(--ink); line-height: 1.2; }
+    .tq-ov .d { font-size: 11.5px; color: var(--text-2); } .tq-ov .d b.g { color: var(--good-ink); } .tq-ov .d b.r { color: var(--crit-ink); }
     .tq-fun { display: flex; align-items: stretch; } .tq-fn { flex: 1 1 0; min-width: 0; border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; background: var(--card); }
     .tq-fn .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: .4px; color: var(--text-2); font-weight: 700; min-height: 26px; } .tq-fn b { display: block; font-size: 21px; font-weight: 800; color: var(--ink); line-height: 1.15; white-space: nowrap; font-variant-numeric: tabular-nums; }
     .tq-fn span { display: block; font-size: 11.5px; color: var(--text-2); margin-top: 2px; } .tq-fn.warn { background: var(--warn-bg); border-color: #f4d48d; } .tq-fn.crit { background: var(--crit-bg); border-color: var(--crit); } .tq-fn.crit b { color: var(--crit-ink); }
@@ -118,7 +118,7 @@
     .tq-vs > i { display: grid; place-items: center; font-style: normal; font-weight: 800; color: var(--crit); } .tq-vs .obs { background: var(--good-bg); border-color: #b5e2b5; } .tq-vs .chg { background: var(--crit-bg); border-color: #f3b9b6; } .tq-vs .chg.ok { background: var(--good-bg); border-color: #b5e2b5; }
     .tq-wv .hbar { grid-template-columns: minmax(110px, 38%) 1fr 84px; }
     .tq-sel td { background: var(--blue-50); } .tq-sel td:first-child { box-shadow: inset 3px 0 0 var(--blue); }
-    .tq-tbl td { padding: 7px 7px; white-space: nowrap; } .tq-tbl th { padding: 8px 7px; } .tq-tbl { font-size: 12.25px; } .tq-2l { line-height: 1.3; } .tq-2l small { display: block; font-size: 11px; color: var(--text-2); }
+    .tq-tbl td { padding: 7px 6px; } .tq-tbl td:first-child, .tq-tbl td.r { white-space: nowrap; } .tq-tbl th { padding: 8px 6px; } .tq-tbl { font-size: 12px; } .tq-2l { line-height: 1.3; } .tq-2l small { display: block; font-size: 11px; color: var(--text-2); }
     .tq-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; } .tq-btns .btn { justify-content: center; }
     .tq-heat .heat .hc { height: 34px; } .tq-pr .btn { justify-content: center; }
     .tq-pr { display: grid; grid-template-columns: 26px minmax(0, 1fr) 150px 128px; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line-2); } .tq-pr:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -154,7 +154,7 @@
           { icon: 'car', bg: 'bg-info', value: fmt(vehTotal), label: 'Vehicles tolled today', delta: { dir: 'up', value: '+3%', text: 'vs. last Tuesday', good: true } },
           { icon: 'tag', bg: 'bg-navy', value: Math.round(wAvg('fastag')) + '%', label: 'FASTag share', delta: { dir: 'up', value: '+2 pts', text: 'vs. last month', good: true } },
           { icon: 'clock', bg: 'bg-warn', value: (Math.round(wAvg('wait') * 10) / 10), unit: 'mins', label: 'Avg. wait at plazas', delta: { dir: 'up', value: '+0.6', text: 'vs. last hour', good: false }, go: 'toll/queue' },
-          { icon: 'trend', bg: 'bg-crit', value: lakh(T.leak24), label: 'Est. leakage, last 24 h', delta: { dir: 'up', value: `${T.leakPct}%`, text: 'of toll revenue', good: false }, go: 'toll/leakage', tip: `${T.leakPct}% of the ₹ ${T.rev24} Cr collected in the last 24 hours` },
+          { icon: 'trend', bg: 'bg-crit', value: lakh(T.leak24), label: 'Est. leakage, last 24&nbsp;h', delta: { dir: 'up', value: `${T.leakPct}%`, text: 'of toll revenue', good: false }, go: 'toll/leakage', tip: `${T.leakPct}% of the ₹ ${T.rev24} Cr collected in the last 24 hours` },
           { icon: 'flag', bg: 'bg-violet', value: T.flagged24, label: 'Flagged transactions', delta: { dot: 'crit', value: `${T.confirmedPct}%`, text: 'confirmed' }, go: 'toll/review' },
         ], 'g6 compact') + `<div class="grid g-2-1">
           <div class="card flush">${VQ.Map.render({ h: 310, plainRoute: 1, pins, legend: `<b>Toll plazas</b><span><i class="dot" style="background:${VQ.Map.TONE.info}"></i>Normal</span><span><i class="dot" style="background:${VQ.Map.TONE.warn}"></i>Queue building</span><span><i class="dot" style="background:${VQ.Map.TONE.violet}"></i>Leakage anomaly</span>` })}</div>
