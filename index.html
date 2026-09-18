@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VizionIQ · Highway Intelligence Platform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b2a5e'/%3E%3Cpath d='M7 9l9 15 9-15' fill='none' stroke='%232f8bff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand" onclick="VQ.go('home')">
+      <div class="brand-name">VIZION<b>IQ</b></div>
+      <div class="brand-sub">Highway Intelligence Platform</div>
+    </div>
+    <div class="brand-tag">See More.<br>Know Sooner.<br>Act Smarter.</div>
+    <div class="search" onclick="VQ.openSearch()"><span id="ic-search"></span><span class="ph">Search location, camera, incident or asset…</span><kbd>/</kbd></div>
+    <div class="top-right">
+      <div class="nation">For a Safer, Smarter, Stronger India.
+        <svg viewBox="0 0 60 30" width="50" height="25" aria-hidden="true"><path d="M2 20C18 6 38 4 58 3c-8 5-14 8-18 10z" fill="#ff9933"/><path d="M2 22c18-9 34-9 48-8-7 4-14 6-20 8z" fill="#fff"/><path d="M2 24c16-5 28-4 40-2-8 4-18 5-40 2z" fill="#138808"/></svg>
+      </div>
+      <div class="top-meta">
+        <span class="date">Tue, 16 Sep 2026</span><span class="sep"></span><span class="time" id="clock">08:45 AM</span><span class="sep"></span>
+        <button class="bell" onclick="VQ.go('incidents/feed')" aria-label="Notifications"><span id="ic-bell"></span><i>3</i></button>
+        <div class="avatar">KK</div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="rail">
+    <nav id="rail"></nav>
+    <div class="rail-hero"><div class="rail-hero-txt">Smarter<br>Highways<br>Brighter India</div></div>
+  </aside>
+
+  <div class="main-wrap">
+    <main id="main"></main>
+    <footer class="demo" id="demo"></footer>
+  </div>
+</div>
+
+<div class="ov" id="ov"><div class="box" id="ov-box"></div></div>
+<div class="toast" id="toast"></div>
+<div class="tip" id="tip"></div>
+
+<script src="js/core.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/map.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/data.js"></script>
+<script src="js/screens/home.js"></script>
+<script src="js/screens/live.js"></script>
+<script src="js/screens/incidents.js"></script>
+<script src="js/screens/incident.js"></script>
+<script src="js/screens/traffic.js"></script>
+<script src="js/screens/toll.js"></script>
+<script src="js/screens/assets.js"></script>
+<script src="js/screens/more.js"></script>
+<script src="js/journey.js"></script>
+<script>VQ.start();</script>
+</body>
+</html>
